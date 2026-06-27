@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Weight Gain Diet Consultant</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#ffb347,#ffcc80);
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:100vh;
+padding:20px;
+}
+
+.container{
+width:430px;
+background:#fff;
+padding:30px;
+border-radius:20px;
+box-shadow:0 10px 25px rgba(0,0,0,.2);
+}
+
+h1{
+text-align:center;
+color:#ff6f00;
+margin-bottom:20px;
+}
+
+label{
+display:block;
+margin-top:15px;
+font-weight:bold;
+}
+
+input,select{
+width:100%;
+padding:12px;
+margin-top:6px;
+border:1px solid #ccc;
+border-radius:8px;
+font-size:16px;
+}
+
+button{
+width:100%;
+padding:14px;
+margin-top:20px;
+border:none;
+border-radius:8px;
+font-size:17px;
+cursor:pointer;
+background:#ff6f00;
+color:white;
+font-weight:bold;
+transition:.3s;
+}
+
+button:hover{
+background:#e65100;
+}
+
+.download{
+background:#2e7d32;
+}
+
+.download:hover{
+background:#1b5e20;
+}
+
+#result{
+margin-top:20px;
+padding:15px;
+background:#fff8e1;
+border-left:5px solid orange;
+border-radius:10px;
+display:none;
+white-space:pre-wrap;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>💪 Weight Gain Diet Consultant</h1>
+
+<label>Age</label>
+<input type="number" id="age" placeholder="Enter Age">
+
+<label>Height (cm)</label>
+<input type="number" id="height" placeholder="Enter Height">
+
+<label>Current Weight (kg)</label>
+<input type="number" id="currentWeight" placeholder="Current Weight">
+
+<label>Target Weight (kg)</label>
+<input type="number" id="targetWeight" placeholder="Required Weight">
+
+<label>Food Preference</label>
+
+<select id="food">
+<option value="">Select</option>
+<option>Veg</option>
+<option>Non-Veg</option>
+</select>
+
+<button onclick="generateDiet()">Generate Diet Chart</button>
+
+<div id="result"></div>
+
+<button class="download" onclick="downloadChart()">Download Diet Chart</button>
+
+</div>
+
+<script>
+
+let dietChart="";
+
+function generateDiet(){
+
+let age=document.getElementById("age").value;
+let height=document.getElementById("height").value;
+let current=document.getElementById("currentWeight").value;
+let target=document.getElementById("targetWeight").value;
+let food=document.getElementById("food").value;
+
+if(age==""||height==""||current==""||target==""||food==""){
+alert("Please fill all details.");
+return;
+}
+
+let plan="";
+
+if(food=="Veg"){
+
+plan=`
+🥛 Breakfast
+* Banana Shake
+* Oats with Milk
+* Peanut Butter Toast
+
+🍎 Mid Morning
+* Mixed Nuts
+* Fruit Juice
+
+🍛 Lunch
+* 3 Chapati
+* Rice
+* Dal
+* Paneer
+* Salad
+
+🥤 Evening Snack
+* Dry Fruits
+* Milk Shake
+
+🍽️ Dinner
+* Chapati
+* Soybean Curry
+* Paneer
+* Vegetables
+
+🌙 Before Bed
+* Warm Milk
+`;
+
+}
+else{
+
+plan=`
+🥚 Breakfast
+* 4 Boiled Eggs
+* Bread
+* Milk
+
+🍌 Mid Morning
+* Banana Shake
+* Almonds
+
+🍗 Lunch
+* Chicken Breast
+* Rice
+* Salad
+
+🥜 Evening Snack
+* Peanut Butter Sandwich
+* Fruit Juice
+
+🍖 Dinner
+* Fish/Chicken
+* Rice
+* Vegetables
+
+🌙 Before Bed
+* Milk
+* Dry Fruits
+`;
+
+}
+
+dietChart=
+"========== WEIGHT GAIN DIET CHART ==========\n\n"+
+"Age : "+age+"\n"+
+"Height : "+height+" cm\n"+
+"Current Weight : "+current+" kg\n"+
+"Target Weight : "+target+" kg\n"+
+"Food Preference : "+food+"\n\n"+
+plan+
+"\n✔️ Drink 3 litres of water daily."+
+"\n✔️ Eat every 3-4 hours."+
+"\n✔️ Do strength training 4-5 days/week."+
+"\n✔️ Sleep at least 8 hours.";
+
+document.getElementById("result").style.display="block";
+document.getElementById("result").innerHTML="<h3>Your Diet Chart</h3><br>"+dietChart;
+
+}
+
+function downloadChart(){
+
+if(dietChart==""){
+alert("Generate Diet Chart First.");
+return;
+}
+
+let blob=new Blob([dietChart],{type:"text/plain"});
+
+let a=document.createElement("a");
+
+a.href=URL.createObjectURL(blob);
+
+a.download="Weight_Gain_Diet_Chart.txt";
+
+a.click();
+
+}
+
+</script>
+
+</body>
+</html>
