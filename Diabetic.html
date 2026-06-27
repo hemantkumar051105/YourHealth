@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diabetic Diet Consultant</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#00b4db,#0083b0);
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:100vh;
+padding:20px;
+}
+
+.container{
+width:430px;
+background:white;
+padding:30px;
+border-radius:20px;
+box-shadow:0 10px 25px rgba(0,0,0,.2);
+}
+
+h1{
+text-align:center;
+color:#0077b6;
+margin-bottom:20px;
+}
+
+label{
+display:block;
+margin-top:15px;
+font-weight:bold;
+}
+
+input,select{
+width:100%;
+padding:12px;
+margin-top:6px;
+border:1px solid #ccc;
+border-radius:8px;
+font-size:16px;
+}
+
+button{
+width:100%;
+padding:14px;
+margin-top:20px;
+border:none;
+border-radius:8px;
+font-size:17px;
+cursor:pointer;
+background:#0077b6;
+color:white;
+font-weight:bold;
+transition:.3s;
+}
+
+button:hover{
+background:#023e8a;
+}
+
+.download{
+background:#2e8b57;
+}
+
+.download:hover{
+background:#1d6f46;
+}
+
+#result{
+display:none;
+margin-top:20px;
+padding:15px;
+background:#eefcff;
+border-left:5px solid #0077b6;
+border-radius:10px;
+white-space:pre-wrap;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🩺 Diabetic Diet Consultant</h1>
+
+<label>Age</label>
+<input type="number" id="age" placeholder="Enter Age">
+
+<label>Height (cm)</label>
+<input type="number" id="height" placeholder="Enter Height">
+
+<label>Current Weight (kg)</label>
+<input type="number" id="current">
+
+<label>Target Weight (kg)</label>
+<input type="number" id="target">
+
+<label>Food Preference</label>
+
+<select id="food">
+<option value="">Select</option>
+<option>Veg</option>
+<option>Non-Veg</option>
+</select>
+
+<button onclick="generateDiet()">Generate Diet Chart</button>
+
+<div id="result"></div>
+
+<button class="download" onclick="downloadChart()">Download Diet Chart</button>
+
+</div>
+
+<script>
+
+let chart="";
+
+function generateDiet(){
+
+let age=document.getElementById("age").value;
+let height=document.getElementById("height").value;
+let current=document.getElementById("current").value;
+let target=document.getElementById("target").value;
+let food=document.getElementById("food").value;
+
+if(age==""||height==""||current==""||target==""||food==""){
+alert("Please fill all details.");
+return;
+}
+
+let meal="";
+
+if(food=="Veg"){
+
+meal=`
+🥣 Breakfast
+* Oats
+* Skim Milk
+* Boiled Sprouts
+
+🍎 Mid Morning
+* Apple
+* Guava
+
+🍛 Lunch
+* 2 Chapati
+* Dal
+* Green Vegetables
+* Salad
+
+🥜 Evening Snack
+* Roasted Chana
+* Green Tea
+
+🍲 Dinner
+* Vegetable Soup
+* Paneer
+* Salad
+
+`;
+
+}
+else{
+
+meal=`
+🥚 Breakfast
+* 2 Boiled Eggs
+* Brown Bread
+* Skim Milk
+
+🍎 Mid Morning
+* Apple
+* Orange
+
+🍗 Lunch
+* Grilled Chicken
+* Brown Rice
+* Salad
+
+🥜 Evening Snack
+* Green Tea
+* Roasted Nuts
+
+🍲 Dinner
+* Grilled Fish
+* Vegetables
+* Soup
+
+`;
+
+}
+
+chart=
+"========== DIABETIC DIET CHART ==========\n\n"+
+"Age : "+age+"\n"+
+"Height : "+height+" cm\n"+
+"Current Weight : "+current+" kg\n"+
+"Target Weight : "+target+" kg\n"+
+"Food Preference : "+food+"\n\n"+
+meal+
+"\nHealth Tips"+
+"\n✔️ Avoid Sugar & Soft Drinks"+
+"\n✔️ Eat High Fibre Foods"+
+"\n✔️ Drink 2-3 Litres Water"+
+"\n✔️ Walk 30-45 Minutes Daily"+
+"\n✔️ Check Blood Sugar Regularly"+
+"\n✔️ Follow Doctor's Advice";
+
+document.getElementById("result").style.display="block";
+document.getElementById("result").innerHTML="<h3>📋 Your Diet Chart</h3><br>"+chart;
+
+}
+
+function downloadChart(){
+
+if(chart==""){
+alert("Generate Diet Chart First");
+return;
+}
+
+let blob=new Blob([chart],{type:"text/plain"});
+
+let a=document.createElement("a");
+
+a.href=URL.createObjectURL(blob);
+
+a.download="Diabetic_Diet_Chart.txt";
+
+a.click();
+
+}
+
+</script>
+
+</body>
+</html>
