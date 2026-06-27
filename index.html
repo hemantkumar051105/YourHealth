@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Online Diet Consultant</title>
+<link rel="stylesheet" href="part.css">
+</head>
+<body>
+
+<header>
+    
+    <h1 style="color: black;"> YourHealth</h1>
+
+    <nav>
+        <ul>
+          <div class="ak"> <button> <li><a href="#home">Home</a></li></button></div>
+            <button><li><a href="#services">Services</a></li></button>
+         <button>   <li><a href="#plans">Diet Plans</a></li></button>
+            
+           <button> <li><a href="#contact">Contact</a></li></button>
+        </ul>
+    </nav>
+</header>
+
+<section class="hero" id="home">
+    <h1>Healthy Food, Healthy Life</h1>
+    <p>Consult professional diet plans for a better lifestyle.</p>
+
+    <button onclick="bookConsultation()">Book Consultation</button>
+</section>
+
+<section id="services">
+
+<h2 style="background-color: antiquewhite;">Our Services</h2>
+
+<div class="cards">
+
+<div class="card"><nav><a href="weightloss.html"><button style="background-color: olivedrab;">
+<h3>🥦 Weight Loss</h3>
+<p>Customized meal plans for healthy weight loss.</p>
+</button></a></nav></div>
+
+<div class="card"><nav><a href="weightgain.html"><button style="background-color: skyblue;">
+<h3>💪 Weight Gain</h3>
+<p>Protein-rich diet plans for muscle building.</p></button>
+</a></nav></div>
+
+<div class="card"><nav><a href="Diabetic.html"><button style="background-color: brown;">
+<h3>❤️ Diabetic Diet</h3>
+<p>Balanced nutrition for diabetes management.</p>
+</button></a></nav></div>
+
+</div>
+
+</section>
+
+<section id="plans">
+
+<h2 style="background-color: antiquewhite;">Popular Diet Plans</h2>
+
+<div class="cards">
+
+<div class="card"><button style="background-color: coral;">
+   
+<h3>Keto Diet</h3>
+<p>Low-carb and high-fat diet.</p>
+</div></button>
+
+<div class="card"><button style="background-color: navy;">
+<h3>Mediterranean Diet</h3>
+<p>Healthy fruits, vegetables and olive oil.</p>
+</div></button>
+
+<div class="card"><button style="background-color: green;">
+<h3>High Protein Diet</h3>
+<p>Perfect for fitness lovers.</p>
+</div></button>
+
+</div>
+
+</section>
+
+<section id="bmi">
+
+<h2>BMI Calculator</h2>
+
+<input type="number" id="weight" placeholder="Weight (kg)">
+<input type="number" id="height" placeholder="Height (cm)">
+
+<button onclick="calculateBMI()">Calculate BMI</button>
+
+<h3 id="result"></h3>
+
+</section>
+
+<section id="contact">
+
+<h2>Contact Us</h2>
+
+<form onsubmit="return submitForm()">
+
+<input type="text" placeholder="Your Name" required>
+
+<input type="email" placeholder="Email" required>
+
+<textarea placeholder="Your Message" required></textarea>
+
+<button type="submit">Send</button>
+
+</form>
+
+</section>
+
+<footer>
+
+<p>© 2026 YourHealth| Healthy Living Starts Here</p>
+
+</footer>
+
+<script src="add.js"></script>
+
+</body>
+</html>
