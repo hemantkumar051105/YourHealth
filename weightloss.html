@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Online Diet Consultant</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#7ed957,#dfffd8);
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:100vh;
+padding:20px;
+}
+
+.container{
+background:#fff;
+width:420px;
+padding:30px;
+border-radius:20px;
+box-shadow:0 10px 25px rgba(0,0,0,.2);
+}
+
+h1{
+text-align:center;
+color:#2e8b57;
+margin-bottom:20px;
+}
+
+label{
+display:block;
+margin-top:15px;
+font-weight:bold;
+color:#333;
+}
+
+input,select{
+width:100%;
+padding:12px;
+margin-top:5px;
+border:1px solid #ccc;
+border-radius:8px;
+font-size:16px;
+}
+
+button{
+width:100%;
+padding:14px;
+margin-top:20px;
+border:none;
+border-radius:8px;
+font-size:17px;
+cursor:pointer;
+background:#2e8b57;
+color:white;
+transition:.3s;
+}
+
+button:hover{
+background:#1d6f46;
+}
+
+#result{
+margin-top:20px;
+padding:15px;
+background:#f4fff3;
+border-left:5px solid green;
+border-radius:10px;
+display:none;
+}
+
+.download{
+background:#ff9800;
+}
+
+.download:hover{
+background:#e68900;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<h1>🥗 Diet Consultant</h1>
+
+<label>Age</label>
+<input type="number" id="age" placeholder="Enter Age">
+
+<label>Height (cm)</label>
+<input type="number" id="height" placeholder="Enter Height">
+
+<label>Current Weight (kg)</label>
+<input type="number" id="current">
+
+<label>Required Weight (kg)</label>
+<input type="number" id="target">
+
+<label>Food Preference</label>
+<select id="food">
+<option value="Veg">Veg</option>
+<option value="Non-Veg">Non-Veg</option>
+</select>
+
+<button onclick="generatePlan()">Generate Diet Chart</button>
+
+<div id="result"></div>
+
+<button class="download" onclick="downloadChart()">Download Diet Chart</button>
+
+</div>
+
+<script>
+
+let chartText="";
+
+function generatePlan(){
+
+let age=document.getElementById("age").value;
+let height=document.getElementById("height").value;
+let current=document.getElementById("current").value;
+let target=document.getElementById("target").value;
+let food=document.getElementById("food").value;
+
+if(age==""||height==""||current==""||target==""){
+alert("Please fill all details.");
+return;
+}
+
+let meal="";
+
+if(food=="Veg"){
+meal=`
+Breakfast:
+• Oats + Milk
+• Apple
+
+Lunch:
+• 2 Chapati
+• Dal
+• Salad
+• Green Vegetables
+
+Evening:
+• Green Tea
+• Roasted Chana
+
+Dinner:
+• Vegetable Soup
+• Paneer
+• Salad
+`;
+}
+else{
+
+meal=`
+Breakfast:
+• Boiled Eggs
+• Brown Bread
+• Milk
+
+Lunch:
+• Grilled Chicken
+• Brown Rice
+• Salad
+
+Evening:
+• Fruits
+• Green Tea
+
+Dinner:
+• Fish/Chicken
+• Vegetables
+`;
+}
+
+chartText=
+"ONLINE DIET CONSULTANT\n\n"+
+"Age : "+age+"\n"+
+"Height : "+height+" cm\n"+
+"Current Weight : "+current+" kg\n"+
+"Target Weight : "+target+" kg\n"+
+"Food Preference : "+food+"\n\n"+
+"Recommended Diet Plan\n"+
+meal+
+"\nDrink 3-4 litres water daily.\n"+
+"Walk 45 minutes everyday.\n"+
+"Avoid Junk Food & Soft Drinks.";
+
+document.getElementById("result").style.display="block";
+document.getElementById("result").innerHTML=
+"<h3>✅ Your Diet Chart</h3><br><pre>"+chartText+"</pre>";
+
+}
+
+function downloadChart(){
+
+if(chartText==""){
+alert("Generate Diet Chart First.");
+return;
+}
+
+let blob=new Blob([chartText],{type:"text/plain"});
+let link=document.createElement("a");
+link.href=URL.createObjectURL(blob);
+link.download="Diet_Chart.txt";
+link.click();
+
+}
+
+</script>
+
+</body>
+</html>
